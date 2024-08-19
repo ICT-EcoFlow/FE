@@ -1,0 +1,8 @@
+flutter_native_splash:
+  color: "#446DB2"  # 배경색
+  image: assets/images/Splash.svg  # 스플래시 이미지
+  android: true  # Android에서 스플래시 화면 활성화
+  ios: true  # iOS에서 스플래시 화면 활성화
+  android_gravity: center  # Android에서 이미지 중앙 정렬
+  ios_content_mode: scaleAspectFit  # iOS에서 이미지 맞춤 모드
+  web: false  # 웹 플랫폼에서 스플래시 화면 비활성화
