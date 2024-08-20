@@ -8,11 +8,21 @@ class Homepage extends StatelessWidget {
     final Size screenSize = MediaQuery.of(context).size;
     final double screenWidth = screenSize.width;
     final double screenHeight = screenSize.height;
-    final containerSize = screenWidth;
+
     return Scaffold(
       backgroundColor: Color(0xFF446DB2),
-      body: BuildWidget(),
-      bottomNavigationBar: BottomBar(),
+      body: Stack(
+        children: [
+          BuildWidget(),
+          // DraggableScrollableSheet을 body에 추가
+          buildCustomBottomSheet(),
+          // BottomBar를 가장 위에 배치
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: BottomBar(),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -44,7 +54,7 @@ class BuildWidget extends StatelessWidget {
                 SizedBox(width: 20,),
                 Text(
                   '이동국밥 님의 복면차왕',
-                  textAlign: TextAlign.center
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),
@@ -53,5 +63,4 @@ class BuildWidget extends StatelessWidget {
       ),
     );
   }
-
-} 
+}
