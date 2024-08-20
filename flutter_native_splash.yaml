@@ -3,6 +3,6 @@ flutter_native_splash:
   image: assets/images/Splash.png  # 스플래시 이미지
   android: true  # Android에서 스플래시 화면 활성화
   ios: true  # iOS에서 스플래시 화면 활성화
-  android_gravity: center  # Android에서 이미지 중앙 정렬
+  android_gravity: fill
   ios_content_mode: scaleAspectFit  # iOS에서 이미지 맞춤 모드
   web: false  # 웹 플랫폼에서 스플래시 화면 비활성화

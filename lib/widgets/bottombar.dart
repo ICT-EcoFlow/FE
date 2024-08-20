@@ -8,7 +8,7 @@ class BottomBar extends StatelessWidget {
 
     return Container(
       width: screenWidth,  // screenWidth로 컨테이너 너비 설정
-      height: 93,
+      height: 90,
       child: Stack(
         children: [
           Positioned(
@@ -28,11 +28,10 @@ class BottomBar extends StatelessWidget {
                 ),
                 shadows: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.25),
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
+                    color: Colors.black.withOpacity(0.3),
+                    offset: Offset(0, 0),
+                    blurRadius: 7,
                   ),
-                  
                 ],
               ),
               child: Stack(
