@@ -1,4 +1,4 @@
-import 'package:ecoflow/screens/widget/bottombar.dart';
+import 'package:ecoflow/widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
