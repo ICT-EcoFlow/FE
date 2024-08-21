@@ -1,12 +1,14 @@
 import 'package:ecoflow/widgets/adBanner.dart';
 import 'package:ecoflow/widgets/carwash.dart';
+import 'package:ecoflow/widgets/howtocharge.dart';
+import 'package:ecoflow/widgets/news.dart';
 import 'package:ecoflow/widgets/weather.dart';
 import 'package:flutter/material.dart';
 
 DraggableScrollableSheet buildCustomBottomSheet() {
   return DraggableScrollableSheet(
     initialChildSize: 0.7, // 초기 크기를 부모의 70%로 설정
-    minChildSize: 0.6, // 최소 크기
+    minChildSize: 0.2, // 최소 크기
     maxChildSize: 1.0, // 최대 크기
     builder: (BuildContext context, ScrollController scrollController) {
       return Container(
@@ -40,7 +42,10 @@ DraggableScrollableSheet buildCustomBottomSheet() {
               Weather(),
               SizedBox(height: 40),
               AutoScrollingAdBanner(),
-              
+              SizedBox(height: 40,),
+              HowToCharge(),
+              SizedBox(height: 40,),
+              News(),
 
               SizedBox(height: 100),
             ],
