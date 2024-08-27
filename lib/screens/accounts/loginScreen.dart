@@ -28,14 +28,8 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('LogIn'),
-          elevation: 0.0,
-          backgroundColor: Colors.blueAccent,
-          centerTitle: true,
-        ),
-        //email. pw 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector
         body: Stack(
+          //배경 이미지
           fit: StackFit.expand,
           children: [
             Image.asset(
@@ -43,6 +37,7 @@ class _LogInState extends State<LogIn> {
               fit: BoxFit.cover, //이미지 원본 크기 그대로 유지
               alignment: Alignment.bottomCenter, //아랫부분을 기준으로 정렬
             ),
+            //email. pw 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector
             GestureDetector(
               onTap: () {
                 FocusScope.of(context).unfocus();
@@ -51,7 +46,19 @@ class _LogInState extends State<LogIn> {
                 child: Column(
                   children: [
                     //특정 영역에만 여백을 지정
-                    Padding(padding: EdgeInsets.only(top: 50)),
+                    Padding(
+                      padding: EdgeInsets.only(top: 110),
+                      child: Center(
+                        child: Text(
+                          '나를 위한\n나의 전기차를 위한',
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                     Form(
                       child: Theme(
                           data: ThemeData(
