@@ -3,7 +3,7 @@ import 'package:ecoflow/screens/home/homepage.dart';
 
 //void main() => runApp(MyApp());
 
-class loginScreen extends StatelessWidget{
+class loginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -28,95 +28,104 @@ class _LogInState extends State<LogIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('LogIn'),
-        elevation: 0.0,
-        backgroundColor: Colors.blueAccent,
-        centerTitle: true,
-      ),
-      //email. pw 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).unfocus();
-        },
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              //특정 영역에만 여백을 지정
-              Padding(padding: EdgeInsets.only(top: 50)),
-              Form(
-                child: Theme(
-                    data: ThemeData(
-                        primaryColor: Colors.grey,
-                        inputDecorationTheme: InputDecorationTheme(
-                            labelStyle: TextStyle(color: Colors.teal, fontSize: 15.0)
-                        )
-                    ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/images/Background.png'),
-                        ),
-                      ),
-                      padding: EdgeInsets.all(40.0),
-                      //키보드가 올라와서 만약 스크린 영역을 차지하는 경우 스크롤 되도록
-                      //SingleChildScrollView로 감싸줌
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            TextField(
-                              controller: controller,
-                              decoration: InputDecoration(labelText: '이메일을 입력해주세요.'),
-                              keyboardType: TextInputType.emailAddress,
-                            ),
-                            TextField(
-                              controller: controller2,
-                              decoration: InputDecoration(labelText: '비밀전호를 입력하세요.'),
-                              keyboardType: TextInputType.text,
-                              //비밀번호는 안 보이도록 하기
-                              obscureText: true,
-                            ),
-                            SizedBox(height: 40.0,),
-                            ButtonTheme(
-                              minWidth: 100.0,
-                              height: 50.0,
-                              child: ElevatedButton(
-                                onPressed: (){
-                                  if(controller.text == 'admin@hello.com' && controller2.text == '1234') {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                Homepage()
-                                        )
-                                    );
-                                  }
-                                  else if(controller.text == 'admin@hello.com' && controller2 != '1234') {
-                                    showSnackBar(context, Text('잘못된 비밀번호입니다.'));
-                                  }
-                                  else if(controller.text != 'admin@hello.com' && controller2 == '1234') {
-                                    showSnackBar(context, Text('잘못된 이메일입니다.'));
-                                  }
-                                  else {
-                                    showSnackBar(context, Text('정보를 확인하세요.'));
-                                  }
-                                },
-                                child: const Text('로그인'),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                ),
-              )
-            ],
-
-          ),
+        appBar: AppBar(
+          title: Text('LogIn'),
+          elevation: 0.0,
+          backgroundColor: Colors.blueAccent,
+          centerTitle: true,
         ),
-      ),
-    );
+        //email. pw 입력하는 부분을 제외한 화면을 탭하면, 키보드 사라지게 GestureDetector
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              'assets/images/Background.png',
+              fit: BoxFit.cover, //이미지 원본 크기 그대로 유지
+              alignment: Alignment.bottomCenter, //아랫부분을 기준으로 정렬
+            ),
+            GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    //특정 영역에만 여백을 지정
+                    Padding(padding: EdgeInsets.only(top: 50)),
+                    Form(
+                      child: Theme(
+                          data: ThemeData(
+                              primaryColor: Colors.grey,
+                              inputDecorationTheme: InputDecorationTheme(
+                                  labelStyle: TextStyle(
+                                      color: Colors.teal, fontSize: 15.0))),
+                          child: Container(
+                            padding: EdgeInsets.all(40.0),
+                            //키보드가 올라와서 만약 스크린 영역을 차지하는 경우 스크롤 되도록
+                            //SingleChildScrollView로 감싸줌
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  TextField(
+                                    controller: controller,
+                                    decoration: InputDecoration(
+                                        labelText: '이메일을 입력해주세요.'),
+                                    keyboardType: TextInputType.emailAddress,
+                                  ),
+                                  TextField(
+                                    controller: controller2,
+                                    decoration: InputDecoration(
+                                        labelText: '비밀전호를 입력하세요.'),
+                                    keyboardType: TextInputType.text,
+                                    //비밀번호는 안 보이도록 하기
+                                    obscureText: true,
+                                  ),
+                                  SizedBox(
+                                    height: 40.0,
+                                  ),
+                                  ButtonTheme(
+                                    minWidth: 100.0,
+                                    height: 50.0,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        if (controller.text ==
+                                                'admin@hello.com' &&
+                                            controller2.text == '1234') {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          Homepage()));
+                                        } else if (controller.text ==
+                                                'admin@hello.com' &&
+                                            controller2 != '1234') {
+                                          showSnackBar(
+                                              context, Text('잘못된 비밀번호입니다.'));
+                                        } else if (controller.text !=
+                                                'admin@hello.com' &&
+                                            controller2 == '1234') {
+                                          showSnackBar(
+                                              context, Text('잘못된 이메일입니다.'));
+                                        } else {
+                                          showSnackBar(
+                                              context, Text('정보를 확인하세요.'));
+                                        }
+                                      },
+                                      child: const Text('로그인'),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 }
 
