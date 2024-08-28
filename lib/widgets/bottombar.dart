@@ -60,7 +60,9 @@ class BottomBar extends StatelessWidget {
                     icon: Image.asset('assets/icons/aiIcon.png'),
                     iconSize: 45,
                     onPressed: () {
-                      Get.to(Aibot());
+                      Get.to(
+                        Aibot(),
+                        transition: Transition.noTransition,);
                     },
                   ),
                 ],
@@ -88,7 +90,8 @@ class BottomBar extends StatelessWidget {
                 icon: Image.asset('assets/icons/elec.png'),
                 iconSize: 45,
                 onPressed: () {
-                  Get.to(Homepage());
+                  Get.to(Homepage(),
+                    transition: Transition.noTransition,);
                 },
               ),
             ),
