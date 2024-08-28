@@ -3,30 +3,24 @@ import 'package:flutter/material.dart';
 class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    final double screenWidth = screenSize.width;
-
     return Container(
-      width: screenWidth,  // screenWidth로 컨테이너 너비 설정
       height: 90,
       child: Stack(
+        alignment: Alignment.center,
         children: [
+          // 배경 및 나머지 아이콘들
           Positioned(
-            left: 0,
-            top: 14,
+            bottom: 0,
             child: Container(
-              width: screenWidth,  // screenWidth로 컨테이너 너비 설정
-              height: 100,
-              clipBehavior: Clip.antiAlias,
-              decoration: ShapeDecoration(
+              width: MediaQuery.of(context).size.width, // 가로 전체 너비 설정
+              height: 70, // BottomBar의 높이 설정
+              decoration: BoxDecoration(
                 color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
                 ),
-                shadows: [
+                boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.3),
                     offset: Offset(0, 0),
@@ -34,107 +28,65 @@ class BottomBar extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Stack(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Positioned(
-                    left: 95,
-                    top: 10,
-                    child: IconButton(
-                      icon: Image.asset(
-                        'assets/icons/carIcon.png', // 아이콘 경로
-                      ),
-                      iconSize: 45, // 아이콘 크기 (선택 사항)
-                      onPressed: () {
-                        // 버튼을 눌렀을 때의 동작
-                      },
-                    ),
+                  IconButton(
+                    icon: Image.asset('assets/icons/carIcon.png'),
+                    iconSize: 45,
+                    onPressed: () {
+                      // 버튼을 눌렀을 때의 동작
+                    },
                   ),
-                  Positioned(
-                    left: 25,
-                    top: 12,
-                    child: IconButton(
-                      icon: Image.asset(
-                        'assets/icons/cardIcon.png', // 아이콘 경로
-                      ),
-                      iconSize: 45.0, // 아이콘 크기 (선택 사항)
-                      onPressed: () {
-                        // 버튼을 눌렀을 때의 동작
-                      },
-                    ),
+                  IconButton(
+                    icon: Image.asset('assets/icons/cardIcon.png'),
+                    iconSize: 45,
+                    onPressed: () {
+                      // 버튼을 눌렀을 때의 동작
+                    },
                   ),
-                  Positioned(
-                    left: 240,
-                    top: 10,
-                    child: IconButton(
-                      icon: Image.asset(
-                        'assets/icons/mapIcon.png', // 아이콘 경로
-                      ),
-                      iconSize: 45.0, // 아이콘 크기 (선택 사항)
-                      onPressed: () {
-                        // 버튼을 눌렀을 때의 동작
-                      },
-                    ),
+                  SizedBox(width: 63), // 가운데 원형 컨테이너를 위한 공간 확보
+                  IconButton(
+                    icon: Image.asset('assets/icons/mapIcon.png'),
+                    iconSize: 45,
+                    onPressed: () {
+                      // 버튼을 눌렀을 때의 동작
+                    },
                   ),
-                  Positioned(
-                    left: 310,
-                    top: 10,
-                    child: IconButton(
-                      icon: Image.asset(
-                        'assets/icons/aiIcon.png', // 아이콘 경로
-                      ),
-                      iconSize: 45, // 아이콘 크기 (선택 사항)
-                      onPressed: () {
-                        // 버튼을 눌렀을 때의 동작
-                      },
-                    ),
+                  IconButton(
+                    icon: Image.asset('assets/icons/aiIcon.png'),
+                    iconSize: 45,
+                    onPressed: () {
+                      // 버튼을 눌렀을 때의 동작
+                    },
                   ),
                 ],
               ),
             ),
           ),
+          // 가운데 위치한 원형 컨테이너와 elec 아이콘
           Positioned(
-            left: screenWidth / 2 - 31.5, // 화면 가운데에 배치
-            top: 0,
+            bottom: 25, // BottomBar에서 50만큼 떨어지도록 설정
             child: Container(
-              width: 63,
-              height: 63,
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    child: Container(
-                      width: 63,
-                      height: 63,
-                      decoration: ShapeDecoration(
-                        color: Color(0xFF446DB2),
-                        shape: OvalBorder(
-                          side: BorderSide(width: 1, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    left: 2.52,
-                    top: 2.52,
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: IconButton(
-                        icon: Image.asset('assets/icons/elec.png'),
-                        onPressed: () {
-                          // 버튼 클릭 시 동작을 여기에 추가하세요
-                        },
-                      ),
-                    ),
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: Color(0xFF446DBE),
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    offset: Offset(0, 0),
+                    blurRadius: 7,
                   ),
                 ],
+              ),
+              child: IconButton(
+                icon: Image.asset('assets/icons/elec.png'),
+                iconSize: 45,
+                onPressed: () {
+                  // 버튼 클릭 시 동작
+                },
               ),
             ),
           ),
