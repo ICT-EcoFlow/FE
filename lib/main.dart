@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ecoflow/screens/home/homepage.dart';
+import 'package:ecoflow/screens/accounts/loginScreen.dart';
+
 void main() {
   runApp(const EcoFlow());
 }
@@ -12,7 +14,8 @@ class EcoFlow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Homepage(),
+      //home: Homepage(),
+      home: LogIn(),
     );
   }
 }
