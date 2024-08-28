@@ -1,4 +1,7 @@
+import 'package:ecoflow/screens/home/aiBot.dart';
+import 'package:ecoflow/screens/home/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BottomBar extends StatelessWidget {
   @override
@@ -42,7 +45,7 @@ class BottomBar extends StatelessWidget {
                     icon: Image.asset('assets/icons/cardIcon.png'),
                     iconSize: 45,
                     onPressed: () {
-                      // 버튼을 눌렀을 때의 동작
+                      
                     },
                   ),
                   SizedBox(width: 63), // 가운데 원형 컨테이너를 위한 공간 확보
@@ -57,7 +60,7 @@ class BottomBar extends StatelessWidget {
                     icon: Image.asset('assets/icons/aiIcon.png'),
                     iconSize: 45,
                     onPressed: () {
-                      // 버튼을 눌렀을 때의 동작
+                      Get.to(Aibot());
                     },
                   ),
                 ],
@@ -85,7 +88,7 @@ class BottomBar extends StatelessWidget {
                 icon: Image.asset('assets/icons/elec.png'),
                 iconSize: 45,
                 onPressed: () {
-                  // 버튼 클릭 시 동작
+                  Get.to(Homepage());
                 },
               ),
             ),
