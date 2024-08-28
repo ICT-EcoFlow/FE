@@ -47,7 +47,7 @@ class _LogInState extends State<LogIn> {
                   children: [
                     //특정 영역에만 여백을 지정
                     Padding(
-                      padding: EdgeInsets.only(top: 110),
+                      padding: EdgeInsets.only(top: 160),
                       child: Center(
                         child: Text(
                           '나를 위한\n나의 전기차를 위한',
@@ -73,19 +73,74 @@ class _LogInState extends State<LogIn> {
                             child: SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  TextField(
-                                    controller: controller,
-                                    decoration: InputDecoration(
-                                        labelText: '이메일을 입력해주세요.'),
-                                    keyboardType: TextInputType.emailAddress,
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                        '아이디',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        )
+                                    ),
                                   ),
-                                  TextField(
-                                    controller: controller2,
-                                    decoration: InputDecoration(
-                                        labelText: '비밀전호를 입력하세요.'),
-                                    keyboardType: TextInputType.text,
-                                    //비밀번호는 안 보이도록 하기
-                                    obscureText: true,
+                                  SizedBox(height: 10),
+                                  Container(
+                                    width: 316,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.8),
+                                    ),
+                                    child: TextField(
+                                      controller: controller,
+                                      decoration: InputDecoration(
+                                        labelText: '이메일을 입력해주세요.',
+                                        labelStyle: TextStyle(
+                                          color: Color(0xFF555555).withOpacity(0.7), // 여기서 설정
+                                        ),
+                                        border: InputBorder.none,
+                                        //TextField 내부에 입력된 텍스트와 필드 가장자리 사이 패딩 설정
+                                        //왼,오에 각각 16.0씩 패딩 
+                                        //글자가 너무 가장자리에 글자가 붙지 않도록 - 가독성 높이기 위해 사용
+                                        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                                      ),
+                                      keyboardType: TextInputType.emailAddress,
+                                    ),
+                                  ),
+
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                        '비밀번호',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                        )
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Container(
+                                    width: 316,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.8),
+                                    ),
+                                    child: TextField(
+                                      controller: controller2,
+                                      decoration: InputDecoration(
+                                        labelText: '비밀번호를 입력하세요.',
+                                        labelStyle: TextStyle(
+                                          color: Color(0xFF555555).withOpacity(0.7), // 여기서 설정
+                                        ),
+                                        border: InputBorder.none,
+                                        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                                      ),
+                                      keyboardType: TextInputType.text,
+                                      //비밀번호는 안 보이도록 하기
+                                      //복사 불가
+                                      obscureText: true,
+                                    ),
                                   ),
                                   SizedBox(
                                     height: 40.0,
