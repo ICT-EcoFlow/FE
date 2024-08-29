@@ -24,6 +24,24 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   TextEditingController controller = TextEditingController();
   TextEditingController controller2 = TextEditingController();
+  //비밀번호 보이기 기능
+  bool isPasswordVisible = false;
+  //글자가 입력되면 버튼 투명도 50% -> 100% 하기 위해서
+  //아이디, 비번이 입력되지 않았는데 버튼이 클릭되면 안 됨
+  bool isButtonEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    controller.addListener(_validateInputs);
+    controller2.addListener(_validateInputs);
+  }
+
+  void _validateInputs() {
+    setState(() {
+      isButtonEnabled = controller.text.isNotEmpty && controller2.text.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +90,7 @@ class _LogInState extends State<LogIn> {
                             //SingleChildScrollView로 감싸줌
                             child: SingleChildScrollView(
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Align(
                                     alignment: Alignment.centerLeft,
@@ -84,30 +103,32 @@ class _LogInState extends State<LogIn> {
                                         )
                                     ),
                                   ),
-                                  SizedBox(height: 10),
-                                  Container(
-                                    width: 316,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.8),
-                                    ),
-                                    child: TextField(
-                                      controller: controller,
-                                      decoration: InputDecoration(
-                                        labelText: '이메일을 입력해주세요.',
-                                        labelStyle: TextStyle(
-                                          color: Color(0xFF555555).withOpacity(0.7), // 여기서 설정
-                                        ),
-                                        border: InputBorder.none,
-                                        //TextField 내부에 입력된 텍스트와 필드 가장자리 사이 패딩 설정
-                                        //왼,오에 각각 16.0씩 패딩 
-                                        //글자가 너무 가장자리에 글자가 붙지 않도록 - 가독성 높이기 위해 사용
-                                        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                                  SizedBox(height: 4),
+                                  Center(
+                                    child: Container(
+                                      width: 316,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.8),
                                       ),
-                                      keyboardType: TextInputType.emailAddress,
+                                      child: TextField(
+                                        controller: controller,
+                                        decoration: InputDecoration(
+                                          hintText: '이메일을 입력해주세요.',
+                                          hintStyle: TextStyle(
+                                            color: Color(0xFF555555).withOpacity(0.7), // 여기서 설정
+                                          ),
+                                          border: InputBorder.none,
+                                          //TextField 내부에 입력된 텍스트와 필드 가장자리 사이 패딩 설정
+                                          //왼,오에 각각 16.0씩 패딩
+                                          //글자가 너무 가장자리에 글자가 붙지 않도록 - 가독성 높이기 위해 사용
+                                          contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                                        ),
+                                        keyboardType: TextInputType.emailAddress,
+                                      ),
                                     ),
                                   ),
-
+                                  SizedBox(height: 20),
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
@@ -119,75 +140,106 @@ class _LogInState extends State<LogIn> {
                                         )
                                     ),
                                   ),
-                                  SizedBox(height: 10),
-                                  Container(
-                                    width: 316,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.8),
-                                    ),
-                                    child: TextField(
-                                      controller: controller2,
-                                      decoration: InputDecoration(
-                                        labelText: '비밀번호를 입력하세요.',
-                                        labelStyle: TextStyle(
-                                          color: Color(0xFF555555).withOpacity(0.7), // 여기서 설정
-                                        ),
-                                        border: InputBorder.none,
-                                        contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+
+                                  SizedBox(height: 4),
+                                  Center(
+                                    child: Container(
+                                      width: 316,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.8),
                                       ),
-                                      keyboardType: TextInputType.text,
-                                      //비밀번호는 안 보이도록 하기
-                                      //복사 불가
-                                      obscureText: true,
+                                      child: TextField(
+                                        controller: controller2,
+                                        decoration: InputDecoration(
+                                          hintText: '비밀번호를 입력해주세요.',
+                                          hintStyle: TextStyle(
+                                            color: Color(0xFF555555).withOpacity(0.7),
+                                          ),
+                                          border: InputBorder.none,
+                                          contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                                              color: Colors.grey,
+                                            ),
+                                            onPressed: () {
+                                              setState(() {
+                                                isPasswordVisible = !isPasswordVisible;
+                                              });
+                                            },
+                                          ),
+                                        ),
+                                        // keyboardType: TextInputType.text,
+                                        // 비밀번호는 안 보이도록 하기
+                                        // 복사 불가
+                                        obscureText: !isPasswordVisible,
+                                      ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 40.0,
-                                  ),
-                                  ButtonTheme(
-                                    minWidth: 100.0,
-                                    height: 50.0,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        if (controller.text ==
+                                  SizedBox(height: 25.0),
+                                  Center(
+                                      child: Container(
+                                        width: 316,
+                                        height: 47,
+                                        child: ElevatedButton(
+                                          onPressed: isButtonEnabled ? () {
+                                            if (controller.text ==
                                                 'admin@hello.com' &&
-                                            controller2.text == '1234') {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder:
-                                                      (BuildContext context) =>
+                                                controller2.text == '1234') {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder:
+                                                          (BuildContext context) =>
                                                           Homepage()));
-                                        } else if (controller.text ==
+                                            } else if (controller.text ==
                                                 'admin@hello.com' &&
-                                            controller2 != '1234') {
-                                          showSnackBar(
-                                              context, Text('잘못된 비밀번호입니다.'));
-                                        } else if (controller.text !=
+                                                controller2 != '1234') {
+                                              showSnackBar(
+                                                  context, Text('잘못된 비밀번호입니다.'));
+                                            } else if (controller.text !=
                                                 'admin@hello.com' &&
-                                            controller2 == '1234') {
-                                          showSnackBar(
-                                              context, Text('잘못된 이메일입니다.'));
-                                        } else {
-                                          showSnackBar(
-                                              context, Text('정보를 확인하세요.'));
-                                        }
-                                      },
-                                      child: const Text('로그인'),
-                                    ),
+                                                controller2 == '1234') {
+                                              showSnackBar(
+                                                  context, Text('잘못된 이메일입니다.'));
+                                            } else {
+                                              showSnackBar(
+                                                  context, Text('정보를 확인하세요.'));
+                                            }
+                                          }
+                                              : null,
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.white.withOpacity(isButtonEnabled ? 1.0 : 0.6),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(40.0),
+                                            ),
+                                          ),
+                                          child: const Text('로그인 하기',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.black,
+                                              ),
+                                          ),
+                                        ),
+                                      ),
+
                                   )
+
                                 ],
                               ),
                             ),
-                          )),
-                    )
+                          ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ],
-        ));
+        ),
+    );
   }
 }
 
